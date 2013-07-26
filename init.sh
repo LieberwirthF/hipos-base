@@ -50,10 +50,10 @@ update_bblayers_conf()
 
 		local layer &&
 		for layer in $BB_LAYERS_INCLUDED; do
-			if ! [[ "$layer" =~ "^/" ]]; then
-			   	echo -e "\t$BB_BASE_DIR/$layer \\"
-			else
+			if [[ "${layer:0:1}" = "/" ]]; then
 				echo -e "\t$layer \\"
+			else
+			   	echo -e "\t$BB_BASE_DIR/$layer \\"
 		   	fi
 		done &&
 
