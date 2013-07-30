@@ -112,7 +112,7 @@ hipos_base_init()
 {
 	local BB_LINK="openembedded-core/bitbake"
 	local BB_BASE_DIR="`pwd`"
-	local INIT_SCRIPT="init-$BB_BUILD_DIR_BASE.sh"
+	local SETUP_SCRIPT="setup-$BB_BUILD_DIR_BASE.sh"
 
 	test -h "${BB_LINK}" && rm -f "$BB_LINK" # otherwise init submodule could fail
 
@@ -128,12 +128,12 @@ hipos_base_init()
 	update_bblayers_conf &&
 	update_local_conf &&
 
-	echo -e "bitbake() { trap popd SIGINT; pushd ${BB_BASE_DIR}/${BB_BUILD_DIR_BASE}; "'`which bitbake` $*; local ret=$?; popd; return $ret; }\n' ". ${BB_BASE_DIR}/openembedded-core/oe-init-build-env ${BB_BASE_DIR}/${BB_BUILD_DIR_BASE}" > "${INIT_SCRIPT}" &&
-	chmod +x ${INIT_SCRIPT} &&
+	echo -e "bitbake() { trap popd SIGINT; pushd ${BB_BASE_DIR}/${BB_BUILD_DIR_BASE}; "'`which bitbake` $*; local ret=$?; popd; return $ret; }\n' ". ${BB_BASE_DIR}/openembedded-core/oe-init-build-env ${BB_BASE_DIR}/${BB_BUILD_DIR_BASE}" > "${SETUP_SCRIPT}" &&
+	chmod +x ${SETUP_SCRIPT} &&
 
 	if ${SCRIPT_SOURCED}; then
-		. ${INIT_SCRIPT} || 
-		{ log "E: sourcing ${INIT_SCRIPT} failed"; return 1; }
+		. ${SETUP_SCRIPT} || 
+		{ log "E: sourcing ${SETUP_SCRIPT} failed"; return 1; }
 		echo -e "***"
 		echo -e "***"
 		echo -e "***    You can now start building:"
@@ -145,7 +145,7 @@ hipos_base_init()
 		echo -e "***"
 		echo -e "***    You have to run the following prior build:"
 		echo -e "***"
-		echo -e "***    $ \e[00;36msource ${BB_BASE_DIR}/${INIT_SCRIPT}\e[00m"
+		echo -e "***    $ \e[00;36msource ${BB_BASE_DIR}/${SETUP_SCRIPT}\e[00m"
 		echo -e "***"
 		echo -e "***"
 
