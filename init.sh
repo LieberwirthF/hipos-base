@@ -18,6 +18,8 @@
 BB_LAYERS_INCLUDED="\
 	meta-hipos \
 	meta-hipos-kirkwood \
+    meta-fsl-arm \
+    meta-fsl-arm-extra \
 	meta-java \
 	meta-angstrom \
 	meta-openembedded/meta-oe \
