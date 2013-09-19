@@ -48,8 +48,9 @@ PARALLEL_MAKE = "-j 8"
 #                    'imx6qsabrelite' - i.MX6 sabrelite
 #                    'nitrogen6x'     - i.MX6 nitrogen
 #                    'dres0280_rev_a' - i.MX6 dres0280_rev_a
+#                    'himx'           - i.MX6 himx
 #
-MACHINE ?= "dres0280_rev_a"
+MACHINE ?= "himx"
 
 # To use 'firmware-imx' you need to accept the Freescale EULA 
 ACCEPT_FSL_EULA = "1"
