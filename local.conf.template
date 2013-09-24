@@ -47,7 +47,6 @@ PARALLEL_MAKE = "-j 8"
 #                    'hipos-kirkwood' - Marvell Kirkwood
 #                    'imx6qsabrelite' - i.MX6 sabrelite
 #                    'nitrogen6x'     - i.MX6 nitrogen
-#                    'dres0280_rev_a' - i.MX6 dres0280_rev_a
 #                    'himx'           - i.MX6 himx
 #
 MACHINE ?= "himx"
