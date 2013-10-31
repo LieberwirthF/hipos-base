@@ -39,12 +39,12 @@ PARALLEL_MAKE = "-j 8"
 #MACHINE ?= "qemuppc"
 #MACHINE ?= "qemux86"
 #MACHINE ?= "qemux86-64"
-#MACHINE ?= "hipos-kirkwood"
+#MACHINE ?= "hikirk"
 #
 
 # set machine
 # Available options:
-#                    'hipos-kirkwood' - Marvell Kirkwood
+#                    'hikirk'         - Marvell Kirkwood
 #                    'imx6qsabrelite' - i.MX6 sabrelite
 #                    'nitrogen6x'     - i.MX6 nitrogen
 #                    'himx'           - i.MX6 himx
