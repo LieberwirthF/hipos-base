@@ -67,7 +67,7 @@ ANGSTROM_EGLIBC_VERSION = "2.16"
 
 
 # set distribution
-DISTRO   = "angstrom-next"
+DISTRO   = "angstrom-v2013.12"
 
 #
 # Where to place downloads
