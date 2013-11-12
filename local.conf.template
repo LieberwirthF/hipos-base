@@ -54,17 +54,6 @@ MACHINE ?= "himx"
 # To use 'firmware-imx' you need to accept the Freescale EULA 
 ACCEPT_FSL_EULA = "1"
 
-# set a default machine kernel package revision since the
-# meta-texasinstruments layer tries to expand this value in
-# machine specific packages which do not set COMPATIBLE_MACHINE.
-# So if we do not set this dummy value here then the TI layer
-# will break ANY build even though we do not necessarily build for
-# a TI machine.
-MACHINE_KERNEL_PR = "r0"
-
-
-ANGSTROM_EGLIBC_VERSION = "2.16"
-
 # set distribution
 DISTRO   = "angstrom-v2013.12"
 
