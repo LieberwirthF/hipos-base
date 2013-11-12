@@ -65,6 +65,9 @@ MACHINE_KERNEL_PR = "r0"
 
 ANGSTROM_EGLIBC_VERSION = "2.16"
 
+# xserver-nodm-init preferred provider for nitrogen6x is 'xserver-nodm-init'
+# and not 'entrance'.
+PREFERRED_PROVIDER_xserver-nodm-init_nitrogen6x = "xserver-nodm-init"
 
 # set distribution
 DISTRO   = "angstrom-v2013.12"
