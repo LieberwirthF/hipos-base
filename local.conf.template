@@ -86,11 +86,19 @@ ACCEPT_FSL_EULA = "1"
 # Mask bitbake package 'entrance' because this package also provides the opkg
 # packet 'xserver-nodm-init'. But the polo-image needs the original
 # 'xserver-nodm-init' from bitbake package 'xserver-nodm-init'. If there are
-# two opkg packets that provide 'xserver-nodm-init' opkg installs the first.
+# two opkg packets that provide 'xserver-nodm-init', both were built by 
+# 'bitbake world', opkg installs the first.
 # And 'entrance' comes before 'xserver-nodm-init'. Therefore, 'entrance' must
 # never be built and 'entrance' ipk must not appear in the ipk installation
 # directory.
+# Mask bitbake package 'opkg-collateral'. Package 
+# meta-angstrom/recipes-angstrom/angstrom/angstrom-feed-configs.bb replaces
+# 'opkg-collateral'. But 'bitbake world' builds both. And during rootfs 
+# generation both packages are available. According to Murphy's law the wrong
+# package is installed. 'opkg-collateral' must never be built and 
+# 'opkg-collateral' ipk must not appear in the ipk installation directory.
 BBMASK = "meta-openembedded/meta-efl/recipes-efl/efl/entrance_svn.bb"
+BBMASK .= "|openembedded-core/meta/recipes-devtools/opkg/opkg-collateral.bb"
 
 # set distribution
 DISTRO   = "angstrom-v2013.12"
