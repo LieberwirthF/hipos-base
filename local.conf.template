@@ -44,12 +44,13 @@ PARALLEL_MAKE ?= "-j 8"
 
 # set machine
 # Available options:
-#                    'hikirk'         - Marvell Kirkwood
+#                    'hikirk'         - HydraIP device based on Marvell Kirkwood
 #                    'imx6qsabrelite' - i.MX6 sabrelite
 #                    'nitrogen6x'     - i.MX6 nitrogen
-#                    'himx'           - i.MX6 himx
+#                    'himx0280'       - HydraIP device based on FreeScale i.MX6 (IP Camera)
+#                    'himx0294'       - HydraIP device based on FreeScale i.MX6 (IP Monitor)
 #
-MACHINE ?= "himx"
+MACHINE ?= "himx0280"
 
 # Use gcc version 4.7 instead of default gcc version 4.8.
 # Several errors occurs with gcc 4.8.1 on 'hikirk' machines.
