@@ -52,35 +52,6 @@ PARALLEL_MAKE ?= "-j 8"
 #
 MACHINE ?= "himx0280"
 
-# Use gcc version 4.7 instead of default gcc version 4.8.
-# Several errors occurs with gcc 4.8.1 on 'hikirk' machines.
-#
-# E.g. in most tests 'bonnie++' does not pass through.
-# root@hikirk:/media/test# bonnie++ -u 0
-# Using uid:0, gid:0.
-# Writing with putc()...done
-# Writing intelligently...done
-# Rewriting...done
-# Reading with getc()...done
-# Reading intelligently...done
-# start 'em...done...done...done...
-# Create files in sequential order...done.
-# Stat files in sequential order...Expected 16384 files but only got 16382
-# Cleaning up test directory after error.
-# Bonnie: drastic I/O error (rmdir): Directory not empty
-#
-# Or unpack e.g. root-fs in a folder and delete the files immediately.
-# root@hikirk:/media/test# tar -xjf <rootfs.tar.bz2>
-# root@hikirk:/media/test# rm -rf *
-# rm: can't remove 'usr/share/terminfo/a/ansi+tabs': No such file or directory
-# rm: can't remove 'usr/share/terminfo/a': Directory not empty
-# rm: can't remove 'usr/share/terminfo': Directory not empty
-# rm: can't remove 'usr/share': Directory not empty
-# rm: can't remove 'usr': Directory not empty
-#
-# The errors do not occur with gcc 4.7.2.
-ANGSTROM_GCC_VERSION_arm ?= "4.7%"
-
 # To use 'firmware-imx' you need to accept the Freescale EULA 
 ACCEPT_FSL_EULA = "1"
 
@@ -102,7 +73,7 @@ BBMASK = "meta-openembedded/meta-efl/recipes-efl/efl/entrance_svn.bb"
 BBMASK .= "|openembedded-core/meta/recipes-devtools/opkg/opkg-collateral.bb"
 
 # set distribution
-DISTRO   = "angstrom-v2013.12"
+DISTRO   = "angstrom-v2014.06"
 
 #
 # Where to place downloads
