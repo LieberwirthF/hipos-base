@@ -210,7 +210,7 @@ USER_CLASSES ?= "image-mklibs image-prelink"
 # Supported values are auto, gnome, xfce, rxvt, xcreen, konsole (3.x only), none
 # Note: currently, Konsole support only works for KDE 3.x due to the way
 # newer Konsole versions behave
-OE_TERMINAL = "screen"
+OE_TERMINAL ?= "screen"
 # By default disable interactive patch resolution (tasks will just fail instead):
 PATCHRESOLVE = "noop"
 
