@@ -39,18 +39,13 @@ PARALLEL_MAKE ?= "-j 8"
 #MACHINE ?= "qemuppc"
 #MACHINE ?= "qemux86"
 #MACHINE ?= "qemux86-64"
-#MACHINE ?= "hikirk"
 #
-
-# set machine
-# Available options:
+# supported HydraIP machines:
 #                    'hikirk'         - HydraIP device based on Marvell Kirkwood
-#                    'imx6qsabrelite' - i.MX6 sabrelite
-#                    'nitrogen6x'     - i.MX6 nitrogen
 #                    'himx0280'       - HydraIP device based on FreeScale i.MX6 (IP Camera)
 #                    'himx0294'       - HydraIP device based on FreeScale i.MX6 (IP Monitor)
 #
-MACHINE ?= "himx0280"
+MACHINE ?= "hikirk"
 
 # To use 'firmware-imx' you need to accept the Freescale EULA 
 ACCEPT_FSL_EULA = "1"
