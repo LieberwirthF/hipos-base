@@ -29,6 +29,7 @@ BB_LAYERS_INCLUDED="\
 	meta-openembedded/meta-networking \
 	meta-openembedded/meta-efl \
 	meta-openembedded/meta-gnome \
+	meta-openembedded/meta-xfce \
 	openembedded-core/meta \
 "
 
