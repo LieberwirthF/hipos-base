@@ -19,6 +19,7 @@ BB_LAYERS_INCLUDED="\
 	meta-hipos \
 	meta-fsl-arm \
 	meta-fsl-arm-extra \
+	meta-fsl-demos \
 	meta-java \
 	meta-qt5 \
 	meta-angstrom \
