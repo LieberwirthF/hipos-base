@@ -27,6 +27,7 @@ BB_LAYERS_INCLUDED="\
 	meta-openembedded/meta-systemd \
 	meta-openembedded/meta-multimedia \
 	meta-openembedded/meta-networking \
+	meta-openembedded/meta-webserver \
 	meta-openembedded/meta-python \
 	meta-openembedded/meta-efl \
 	meta-openembedded/meta-gnome \
