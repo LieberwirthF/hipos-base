@@ -20,7 +20,6 @@ BB_LAYERS_INCLUDED="\
 	meta-fsl-arm \
 	meta-fsl-arm-extra \
 	meta-fsl-demos \
-	meta-java \
 	meta-qt5 \
 	meta-angstrom \
 	meta-openembedded/meta-oe \
