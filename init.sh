@@ -134,7 +134,7 @@ hipos_base_init()
 	update_bblayers_conf &&
 	update_local_conf &&
 
-	echo -e "bitbake() { trap popd SIGINT; pushd ${BB_BASE_DIR}/${BB_BUILD_DIR_BASE}; "'`which bitbake` $*; local ret=$?; popd; return $ret; }\n' ". ${BB_BASE_DIR}/openembedded-core/oe-init-build-env ${BB_BASE_DIR}/${BB_BUILD_DIR_BASE}" > "${SETUP_SCRIPT}" &&
+	echo -e "bitbake() { trap popd SIGINT; pushd ${BB_BASE_DIR}/${BB_BUILD_DIR_BASE}; "'`\which bitbake` $*; local ret=$?; popd; return $ret; }\n' ". ${BB_BASE_DIR}/openembedded-core/oe-init-build-env ${BB_BASE_DIR}/${BB_BUILD_DIR_BASE}" > "${SETUP_SCRIPT}" &&
 	chmod +x ${SETUP_SCRIPT} &&
 
 	if ${SCRIPT_SOURCED}; then
