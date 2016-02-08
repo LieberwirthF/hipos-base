@@ -235,3 +235,6 @@ BUILDHISTORY_FEATURES ?= ""
 # Our hipos images uses qt5 and frame buffer. We have to remove x11 and wayland
 # to build this images.
 DISTRO_FEATURES_remove = "x11 wayland"
+
+# hikirk kernel build with gcc 5.2.0 does not boot
+ANGSTROM_GCC_VERSION_arm ?= "4.9%"
