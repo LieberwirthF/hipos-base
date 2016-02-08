@@ -45,7 +45,7 @@ PARALLEL_MAKE ?= "-j 8"
 #                    'himx0280'       - HydraIP device based on FreeScale i.MX6 (IP Camera)
 #                    'himx0294'       - HydraIP device based on FreeScale i.MX6 (IP Monitor)
 #
-MACHINE ?= "hikirk"
+MACHINE ?= "himx0294"
 
 # To use 'firmware-imx' you need to accept the Freescale EULA 
 ACCEPT_FSL_EULA = "1"
