@@ -84,7 +84,7 @@ main_init()
 	if [ ! -f hipos-base/init.sh ]; then
 		"${GIT}" submodule init hipos-base &&
 		"${GIT}" submodule sync hipos-base &&
-		"${GIT}" submodule update hipos-base ||
+		"${GIT}" submodule update --remote hipos-base ||
 		{ log "E: updating hipos-base failed"; return 1; }
 	fi &&
 	check_file hipos-base/init.sh &&
