@@ -21,6 +21,7 @@ BB_LAYERS_INCLUDED="\
 	meta-fsl-arm-extra \
 	meta-fsl-demos \
 	meta-qt5 \
+	meta-telephony \
 	meta-angstrom \
 	meta-openembedded/meta-oe \
 	meta-openembedded/meta-systemd \
