@@ -20,6 +20,7 @@ BB_LAYERS_INCLUDED="\
 	meta-fsl-arm \
 	meta-fsl-arm-extra \
 	meta-fsl-demos \
+	meta-qt4 \
 	meta-qt5 \
 	meta-telephony \
 	meta-angstrom \
