@@ -17,7 +17,7 @@
 # Use a project specific adaptions in $(INIT_SCRIPT_NAME} located in the root repository
 BB_LAYERS_INCLUDED="\
 	meta-hipos \
-	meta-fsl-arm \
+	meta-freescale \
 	meta-fsl-arm-extra \
 	meta-fsl-demos \
 	meta-qt4 \
