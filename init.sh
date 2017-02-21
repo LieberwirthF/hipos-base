@@ -19,7 +19,6 @@ BB_LAYERS_INCLUDED="\
 	meta-hipos \
 	meta-freescale \
 	meta-fsl-arm-extra \
-	meta-fsl-demos \
 	meta-qt4 \
 	meta-qt5 \
 	meta-telephony \
