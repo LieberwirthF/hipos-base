@@ -20,7 +20,6 @@ BB_LAYERS_INCLUDED="\
 	meta-freescale \
 	meta-fsl-arm-extra \
 	meta-qt5 \
-	meta-telephony \
 	meta-congatec-x86 \
 	meta-intel \
 	meta-angstrom \
