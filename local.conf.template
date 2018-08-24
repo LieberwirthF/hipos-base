@@ -240,4 +240,6 @@ DISTRO_FEATURES_remove = "x11 wayland"
 DISTRO_FEATURES_remove_x86-64 = "x11 wayland ld-is-gold"
 
 # add "ptest" to our DISTRO_FEATURES variable causes -ptest packages to be built.
-DISTRO_FEATURES_append = " ptest"
+# In Yocto sumo branch, the ptest Feature causes a "Dependency Loop" error.
+# See HYP-19186. Therefore, the feature is deactivated.
+#DISTRO_FEATURES_append = " ptest"
