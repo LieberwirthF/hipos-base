@@ -241,3 +241,6 @@ DISTRO_FEATURES_remove_x86-64 = "x11 wayland ld-is-gold"
 
 # add "ptest" to our DISTRO_FEATURES variable causes -ptest packages to be built.
 DISTRO_FEATURES_append = " ptest"
+
+# suppress thousands of warnings about user contamination during build
+WARN_QA_remove = "host-user-contaminated"
