@@ -19,6 +19,7 @@ BB_LAYERS_INCLUDED="\
 	meta-hipos \
 	meta-freescale \
 	meta-fsl-arm-extra \
+	meta-python2 \
 	meta-qt5 \
 	meta-intel \
 	meta-angstrom \
