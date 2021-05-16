@@ -24,6 +24,7 @@ BB_LAYERS_INCLUDED="\
 	meta-intel \
 	meta-angstrom \
 	meta-openembedded/meta-oe \
+	meta-openembedded/meta-filesystems \
 	meta-openembedded/meta-multimedia \
 	meta-openembedded/meta-networking \
 	meta-openembedded/meta-webserver \
