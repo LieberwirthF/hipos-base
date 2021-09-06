@@ -118,6 +118,9 @@ hipos_base_init()
 	local BB_LINK="openembedded-core/bitbake"
 	local BB_BASE_DIR="`pwd`"
 	local SETUP_SCRIPT="setup-$BB_BUILD_DIR_BASE.sh"
+	
+	# remove which shell function
+	unset -f which
 
 	test -h "${BB_LINK}" && rm -f "$BB_LINK" # otherwise init submodule could fail
 
