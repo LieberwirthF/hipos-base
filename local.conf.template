@@ -167,7 +167,7 @@ EXTRA_IMAGE_FEATURES = "debug-tweaks"
 #   - 'image-swab' to perform host system intrusion detection
 # NOTE: if listing mklibs & prelink both, then make sure mklibs is before prelink
 # NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
-USER_CLASSES ?= "image-mklibs image-prelink"
+USER_CLASSES ?= "image-prelink"
 
 #
 # Runtime testing of images
@@ -234,14 +234,14 @@ BUILDHISTORY_FEATURES ?= ""
 
 # Our hipos images uses qt5 and frame buffer. We have to remove x11 and wayland
 # to build this images.
-DISTRO_FEATURES_remove = "x11 wayland"
+DISTRO_FEATURES:remove = "x11 wayland"
 
 # Remove also ld-is-gold for x86-64. GNU gold is a linker for ELF files only. HYP-17946
 # Remove also opengl for x86-64 to avoid conflicts with X11 dependencies.
-DISTRO_FEATURES_remove_x86-64 = "x11 wayland ld-is-gold opengl"
+DISTRO_FEATURES:remove_x86-64 = "x11 wayland ld-is-gold opengl"
 
 # add "ptest" to our DISTRO_FEATURES variable causes -ptest packages to be built.
-DISTRO_FEATURES_append = " ptest"
+DISTRO_FEATURES:append = " ptest"
 
 # suppress thousands of warnings about user contamination during build
-WARN_QA_remove = "host-user-contaminated"
+WARN_QA:remove = "host-user-contaminated"
