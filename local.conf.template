@@ -1,74 +1,41 @@
+#
 # This file is your local configuration file and is where all local user settings
 # are placed. The comments in this file give some guide to the options a new user
 # to the system might want to change but pretty much any configuration option can
-# be set in this file. More adventurous users can look at local.conf.extended 
+# be set in this file. More adventurous users can look at local.conf.extended
 # which contains other examples of configuration which can be placed in this file
-# but new users likely don't need any of them initially.
+# but new users likely won't need any of them initially.
 #
-# Lines starting with the '#' character are commented out and in some cases the 
+# Lines starting with the '#' character are commented out and in some cases the
 # default values are provided as comments to show people example syntax. Enabling
 # the option is a question of removing the # character and making any change to the
 # variable as required.
-#
+
 # Private changes that should not be tracked via git may be made in a local file
 # called private.conf. Options set in private.conf will then override options
 # set in this template.
-#
-#
-# These two options control how much parallelism BitBake should use. The first 
-# option determines how many tasks bitbake should run in parallel:
-#
-BB_NUMBER_THREADS ?= "8"
-# 
-# The second option controls how many processes make should run in parallel when
-# running compile tasks:
-#
-PARALLEL_MAKE ?= "-j 8"
-#
-# For a quadcore, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
-# be appropriate for example.
 
 #
 # Machine Selection
 #
 # You need to select a specific machine to target the build with. There are a selection
-# emulated machines available which can boot and run in the QEMU emulator:
+# of emulated machines available which can boot and run in the QEMU emulator:
 #
 #MACHINE ?= "qemuarm"
+#MACHINE ?= "qemuarm64"
 #MACHINE ?= "qemumips"
+#MACHINE ?= "qemumips64"
 #MACHINE ?= "qemuppc"
 #MACHINE ?= "qemux86"
 #MACHINE ?= "qemux86-64"
 #
+# This sets the default machine to be qemux86-64 if no other machine is selected:
+#MACHINE ??= "qemux86-64"
+#
 # supported HydraIP machines:
-#                    'hikirk'         - HydraIP device based on Marvell Kirkwood
-#                    'himx0280'       - HydraIP device based on FreeScale i.MX6 (IP Camera)
-#                    'himx0294'       - HydraIP device based on FreeScale i.MX6 (IP Monitor)
+#                    'himx0294'       - HydraIP device based on FreeScale i.MX6
 #
 MACHINE ?= "himx0294"
-
-# To use 'firmware-imx' you need to accept the Freescale EULA 
-ACCEPT_FSL_EULA = "1"
-
-# Mask bitbake package 'entrance' because this package also provides the opkg
-# packet 'xserver-nodm-init'. But the polo-image needs the original
-# 'xserver-nodm-init' from bitbake package 'xserver-nodm-init'. If there are
-# two opkg packets that provide 'xserver-nodm-init', both were built by 
-# 'bitbake world', opkg installs the first.
-# And 'entrance' comes before 'xserver-nodm-init'. Therefore, 'entrance' must
-# never be built and 'entrance' ipk must not appear in the ipk installation
-# directory.
-# Mask bitbake package 'opkg-collateral'. Package 
-# meta-angstrom/recipes-angstrom/angstrom/angstrom-feed-configs.bb replaces
-# 'opkg-collateral'. But 'bitbake world' builds both. And during rootfs 
-# generation both packages are available. According to Murphy's law the wrong
-# package is installed. 'opkg-collateral' must never be built and 
-# 'opkg-collateral' ipk must not appear in the ipk installation directory.
-BBMASK = "meta-openembedded/meta-efl/recipes-efl/efl/entrance_svn.bb"
-BBMASK .= "|openembedded-core/meta/recipes-devtools/opkg/opkg-collateral.bb"
-
-# set distribution
-DISTRO   = "angstrom"
 
 #
 # Where to place downloads
@@ -87,7 +54,7 @@ DISTRO   = "angstrom"
 # Where to place shared-state files
 #
 # BitBake has the capability to accelerate builds based on previously built output.
-# This is done using "shared state" files which can be through of as cache objects
+# This is done using "shared state" files which can be thought of as cache objects
 # and this option determines where those files are placed.
 #
 # You can wipe out TMPDIR leaving this directory intact and the build would regenerate
@@ -115,8 +82,8 @@ DISTRO   = "angstrom"
 #
 # Package Management configuration
 #
-# This variable lists which packaging formats to enable. Multiple package backends 
-# can be enabled at once and the first item listed in the variable will be used 
+# This variable lists which packaging formats to enable. Multiple package backends
+# can be enabled at once and the first item listed in the variable will be used
 # to generate the root filesystems.
 # Options are:
 #  - 'package_deb' for debian style deb files
@@ -127,74 +94,68 @@ DISTRO   = "angstrom"
 PACKAGE_CLASSES ?= "package_ipk"
 
 #
-# SDK/ADT target architecture
+# SDK target architecture
 #
-# This variable specified the architecture to build SDK/ADT items for and means
-# you can build the SDK packages for architectures other than the machine you are 
-# running the build on (i.e. building i686 packages on an x86_64 host._
-# Supported values are i686 and x86_64
+# This variable specifies the architecture to build SDK items for and means
+# you can build the SDK packages for architectures other than the machine you are
+# running the build on (i.e. building i686 packages on an x86_64 host).
+# Supported values are i686, x86_64, aarch64
 #SDKMACHINE ?= "i686"
 
 #
 # Extra image configuration defaults
 #
-# The EXTRA_IMAGE_FEATURES variable allows extra packages to be added to the generated 
+# The EXTRA_IMAGE_FEATURES variable allows extra packages to be added to the generated
 # images. Some of these options are added to certain image types automatically. The
 # variable can contain the following options:
 #  "dbg-pkgs"       - add -dbg packages for all installed packages
 #                     (adds symbol information for debugging/profiling)
+#  "src-pkgs"       - add -src packages for all installed packages
+#                     (adds source code for debugging)
 #  "dev-pkgs"       - add -dev packages for all installed packages
 #                     (useful if you want to develop against libs in the image)
+#  "ptest-pkgs"     - add -ptest packages for all ptest-enabled packages
+#                     (useful if you want to run the package test suites)
 #  "tools-sdk"      - add development tools (gcc, make, pkgconfig etc.)
 #  "tools-debug"    - add debugging tools (gdb, strace)
-#  "tools-profile"  - add profiling tools (oprofile, exmap, lttng valgrind (x86 only))
+#  "eclipse-debug"  - add Eclipse remote debugging support
+#  "tools-profile"  - add profiling tools (oprofile, lttng, valgrind)
 #  "tools-testapps" - add useful testing tools (ts_print, aplay, arecord etc.)
-#  "debug-tweaks"   - make an image for suitable of development
+#  "debug-tweaks"   - make an image suitable for development
 #                     e.g. ssh root access has a blank password
-# There are other application targets that can be uses here too, see 
-# meta/classes/core-image.bbclass and meta/recipes-core/tasks/task-core.bb for more details.
+# There are other application targets that can be used here too, see
+# meta/classes/image.bbclass and meta/classes/core-image.bbclass for more details.
 # We default to enabling the debugging tweaks.
-EXTRA_IMAGE_FEATURES = "debug-tweaks"
+EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
 
 #
 # Additional image features
 #
 # The following is a list of additional classes to use when building images which
-# enable extra features. Some available options which can be included in this variable 
+# enable extra features. Some available options which can be included in this variable
 # are:
+#   - 'buildstats' collect build statistics
 #   - 'image-mklibs' to reduce shared library files size for an image
 #   - 'image-prelink' in order to prelink the filesystem image
-#   - 'image-swab' to perform host system intrusion detection
 # NOTE: if listing mklibs & prelink both, then make sure mklibs is before prelink
 # NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
-USER_CLASSES ?= "image-prelink"
+USER_CLASSES ?= "buildstats image-mklibs image-prelink"
 
 #
 # Runtime testing of images
 #
 # The build system can test booting virtual machine images under qemu (an emulator)
-# after any root filesystems are created and run tests against those images. To
-# enable this uncomment this line
-#IMAGETEST = "qemu"
-#
-# This variable controls which tests are run against virtual images if enabled
-# above. The following would enable bat, oot test case under sanity suite and 
-# toolchain tests
-#TEST_SCEN = "sanity bat sanity:boot toolchain"
-#
-# Because of the QEMU booting slowness issue(see bug #646 and #618), autobuilder
-# may suffer a timeout issue when running sanity test. We introduce variable
-# TEST_SERIALIZE here to reduce the time on sanity test. It is by default set 
-# to 1. This will start image and run cases in the same image without reboot 
-# or kill. If it is set to 0, the image will be copied and tested for each 
-# case, which will take longer but be more precise.
-#TEST_SERIALIZE = "1"
+# after any root filesystems are created and run tests against those images. It can also
+# run tests against any SDK that are built. To enable this uncomment these lines.
+# See classes/test{image,sdk}.bbclass for further details.
+#IMAGE_CLASSES += "testimage testsdk"
+#TESTIMAGE_AUTO_qemuall = "1"
 
 #
 # Interactive shell configuration
 #
-# Under certain circumstances the system may need input from you and to do this it 
-# can launch an interactive shell. It needs to do this since the build is 
+# Under certain circumstances the system may need input from you and to do this it
+# can launch an interactive shell. It needs to do this since the build is
 # multithreaded and needs to be able to handle the case where more than one parallel
 # process may require the user's attention. The default is iterate over the available
 # terminal types to find one that works.
@@ -202,7 +163,7 @@ USER_CLASSES ?= "image-prelink"
 # Examples of the occasions this may happen are when resolving patches which cannot
 # be applied, to use the devshell or the kernel menuconfig
 #
-# Supported values are auto, gnome, xfce, rxvt, xcreen, konsole (3.x only), none
+# Supported values are auto, gnome, xfce, rxvt, screen, konsole (KDE 3.x only), none
 # Note: currently, Konsole support only works for KDE 3.x due to the way
 # newer Konsole versions behave
 OE_TERMINAL ?= "tmux"
@@ -210,31 +171,114 @@ OE_TERMINAL ?= "tmux"
 PATCHRESOLVE = "noop"
 
 #
+# Disk Space Monitoring during the build
+#
+# Monitor the disk space during the build. If there is less that 1GB of space or less
+# than 100K inodes in any key build location (TMPDIR, DL_DIR, SSTATE_DIR), gracefully
+# shutdown the build. If there is less that 100MB or 1K inodes, perform a hard abort
+# of the build. The reason for this is that running completely out of space can corrupt
+# files and damages the build in ways which may not be easily recoverable.
+# It's necessary to monitor /tmp, if there is no space left the build will fail
+# with very exotic errors.
+BB_DISKMON_DIRS ??= "\
+    STOPTASKS,${TMPDIR},1G,100K \
+    STOPTASKS,${DL_DIR},1G,100K \
+    STOPTASKS,${SSTATE_DIR},1G,100K \
+    STOPTASKS,/tmp,100M,100K \
+    ABORT,${TMPDIR},100M,1K \
+    ABORT,${DL_DIR},100M,1K \
+    ABORT,${SSTATE_DIR},100M,1K \
+    ABORT,/tmp,10M,1K"
+
+#
 # Shared-state files from other locations
 #
-# As mentioned above, shared state files are prebuilt cache data objects which can 
+# As mentioned above, shared state files are prebuilt cache data objects which can be
 # used to accelerate build time. This variable can be used to configure the system
 # to search other mirror locations for these objects before it builds the data itself.
 #
 # This can be a filesystem directory, or a remote url such as http or ftp. These
-# would contain the sstate-cache results from previous builds (possibly from other 
-# machines). This variable works like fetcher MIRRORS/PREMIRRORS and points to the 
+# would contain the sstate-cache results from previous builds (possibly from other
+# machines). This variable works like fetcher MIRRORS/PREMIRRORS and points to the
 # cache locations to check for the shared objects.
+# NOTE: if the mirror uses the same structure as SSTATE_DIR, you need to add PATH
+# at the end as shown in the examples below. This will be substituted with the
+# correct path within the directory structure.
 #SSTATE_MIRRORS ?= "\
-#file://.* http://someserver.tld/share/sstate/ \n \
-#file://.* file:///some/local/dir/sstate/"
+#file://.* http://someserver.tld/share/sstate/PATH;downloadfilename=PATH \n \
+#file://.* file:///some/local/dir/sstate/PATH"
+
+#
+# Hash Equivalence
+#
+# Enable support for automatically running a local hash equivalence server and
+# instruct bitbake to use a hash equivalence aware signature generator. Hash
+# equivalence improves reuse of sstate by detecting when a given sstate
+# artifact can be reused as equivalent, even if the current task hash doesn't
+# match the one that generated the artifact.
+#
+# A shared hash equivalent server can be set with "<HOSTNAME>:<PORT>" format
+#
+#BB_HASHSERVE = "auto"
+#BB_SIGNATURE_HANDLER = "OEEquivHash"
+
+#
+# Memory Resident Bitbake
+#
+# Bitbake's server component can stay in memory after the UI for the current command
+# has completed. This means subsequent commands can run faster since there is no need
+# for bitbake to reload cache files and so on. Number is in seconds, after which the
+# server will shut down.
+#
+#BB_SERVER_TIMEOUT = "60"
 
 # CONF_VERSION is increased each time build/conf/ changes incompatibly and is used to
 # track the version of this file when it was generated. This can safely be ignored if
 # this doesn't mean anything to you.
-CONF_VERSION = "1"
+CONF_VERSION = "2"
+
+#
+# Parallelism Options
+#
+# These two options control how much parallelism BitBake should use. The first
+# option determines how many tasks bitbake should run in parallel:
+#
+#BB_NUMBER_THREADS ?= "4"
+BB_NUMBER_THREADS ?= "8"
+#
+# Default to setting automatically based on cpu count
+#BB_NUMBER_THREADS ?= "${@oe.utils.cpu_count()}"
+#
+# The second option controls how many processes make should run in parallel when
+# running compile tasks:
+#
+#PARALLEL_MAKE ?= "-j 4"
+PARALLEL_MAKE ?= "-j 8"
+#
+# Default to setting automatically based on cpu count
+#PARALLEL_MAKE ?= "-j ${@oe.utils.cpu_count()}"
+#
+# For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
+# be appropriate for example.
+#
+# Some users are behind firewalls or use servers where the number of parallel connections
+# is limited. In such cases you can limit the number of fetch tasks which run in parallel by
+# setting the option below, in this case limiting to a maximum of 4 fetch tasks in parallel:
+#
+#do_fetch[number_threads] = "4"
+#
+# These two options control how much parallelism BitBake should use. The first 
+# option determines how many tasks bitbake should run in parallel:
+#
+
+# To use 'firmware-imx' you need to accept the Freescale EULA 
+ACCEPT_FSL_EULA = "1"
+
+# set distribution
+DISTRO ?= "hipos"
 
 # disable buildhistory feature by default
 BUILDHISTORY_FEATURES ?= ""
-
-# Our hipos images uses qt5 and frame buffer. We have to remove x11 and wayland
-# to build this images.
-DISTRO_FEATURES:remove = "x11 wayland"
 
 # Remove also ld-is-gold for x86-64. GNU gold is a linker for ELF files only. HYP-17946
 # Remove also opengl for x86-64 to avoid conflicts with X11 dependencies.
