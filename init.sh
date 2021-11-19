@@ -22,6 +22,7 @@ BB_LAYERS_INCLUDED="\
 	meta-python2 \
 	meta-qt5 \
 	meta-intel \
+	poky/meta-poky \
 	meta-openembedded/meta-oe \
 	meta-openembedded/meta-filesystems \
 	meta-openembedded/meta-multimedia \
