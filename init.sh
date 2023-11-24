@@ -34,7 +34,8 @@ BB_LAYERS_INCLUDED="\
 	openembedded-core/meta \
 	meta-hailo/meta-hailo-accelerator \
 	meta-hailo/meta-hailo-libhailort \
-	meta-hailo/meta-hailo-tappas
+	meta-hailo/meta-hailo-tappas \
+	meta-carrillo
 "
 
 BB_BUILD_DIR_BASE=build
