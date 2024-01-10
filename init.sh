@@ -35,7 +35,8 @@ BB_LAYERS_INCLUDED="\
 	meta-hailo/meta-hailo-accelerator \
 	meta-hailo/meta-hailo-libhailort \
 	meta-hailo/meta-hailo-tappas \
-	meta-carrillo
+	meta-carrillo \
+	meta-flame
 "
 
 BB_BUILD_DIR_BASE=build
